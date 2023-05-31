@@ -36,10 +36,13 @@ export const POST: RequestHandler = async ({ request }) => {
 						}
 						user = data.user;
 					} else if (email) {
+						console.log('email: ', email);
+
 						const { data, error } = await supabaseClientAdmin.auth.admin.inviteUserByEmail(email, {
 							redirectTo: `${PUBLIC_WEBSITE_HOST}/app`
 						});
 						if (error) {
+							console.log('error: ', error);
 							throw error;
 						}
 						user = data.user;
